@@ -5,6 +5,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.waitingroom.domain.model.Patient
+import com.example.waitingroom.domain.model.PatientPOST
 import com.example.waitingroom.domain.repository.WaitingRoomRepositoryInterface
 import com.example.waitingroom.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,6 +46,35 @@ class MedicalConditionViewModel @Inject constructor(
                 is Resource.Error -> {
                     _state.value = MedicalConditionState(
                         isLoading = false,
+                    )
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun selectItem(body: PatientPOST) {
+        repository.enqueuePatient(body).onEach { resource ->
+            when(resource){
+                is Resource.Loading -> {
+                    // TODO: Nejake loading kolecko ukaz
+                    _state.value = MedicalConditionState(
+                        isLoading = true,
+                        conditions = state.value.conditions
+                    )
+                }
+
+                is Resource.Success -> {
+                    _state.value = MedicalConditionState(
+                        isLoading = false,
+                        conditions = state.value.conditions,
+                        item = resource.value
+                    )
+                }
+
+                is Resource.Error -> {
+                    _state.value = MedicalConditionState(
+                        isLoading = false,
+                        conditions = state.value.conditions
                     )
                 }
             }

@@ -1,10 +1,12 @@
 package com.example.waitingroom.domain.model
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Patient (
     val uuid: String,
     val arrived: String,
-    val condition_name: String,
+//    val condition_name: String,
     val order_number: Int
-)
+) : Parcelable

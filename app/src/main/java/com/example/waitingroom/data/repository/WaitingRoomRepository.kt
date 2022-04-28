@@ -3,6 +3,7 @@ package com.example.waitingroom.data.repository
 import com.example.waitingroom.data.api.WaitingRoomApi
 import com.example.waitingroom.domain.model.MedicalCondition
 import com.example.waitingroom.domain.model.Patient
+import com.example.waitingroom.domain.model.PatientPOST
 import com.example.waitingroom.domain.repository.WaitingRoomRepositoryInterface
 import com.example.waitingroom.utils.Resource
 import kotlinx.coroutines.flow.Flow
@@ -30,7 +31,37 @@ class WaitingRoomRepository @Inject constructor(
         }
     }
 
-    override fun enqueuePatient(): Flow<Resource<Patient>> {
-        TODO("Not yet implemented")
+    override fun enqueuePatient(
+        body: PatientPOST
+    ): Flow<Resource<Patient>> {
+        return flow {
+            try {
+                emit(Resource.Loading())
+                val response = api.enqueuePatient(body)
+                emit(Resource.Success(response))
+            }
+            catch (e: HttpException) {
+                emit(Resource.Error(e.code()))
+            }
+            catch (e: IOException) {
+                emit(Resource.Error(-1))
+            }
+        }
+    }
+
+    override fun checkOrder(): Flow<Resource<Patient>> {
+        return flow {
+            try {
+                emit(Resource.Loading())
+                val response = api.getOrder()
+                emit(Resource.Success(response))
+            }
+            catch (e: HttpException) {
+                emit(Resource.Error(e.code()))
+            }
+            catch (e: IOException) {
+                emit(Resource.Error(-1))
+            }
+        }
     }
 }

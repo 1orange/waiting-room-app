@@ -13,6 +13,9 @@ interface WaitingRoomApi {
     @GET("/conditions")
     suspend fun getConditionList(): List<MedicalCondition>
 
+    @GET("/client")
+    suspend fun getOrder(): Patient
+
     @Headers("Content-Type: application/json")
     @POST("/client")
     suspend fun enqueuePatient(@Body condition: PatientPOST): Patient
