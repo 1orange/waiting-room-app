@@ -3,6 +3,7 @@ package com.example.waitingroom.data.api
 import com.example.waitingroom.domain.model.MedicalCondition
 import com.example.waitingroom.domain.model.Patient
 import com.example.waitingroom.domain.model.PatientPOST
+import com.example.waitingroom.domain.model.PatientState
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,6 +16,10 @@ interface WaitingRoomApi {
 
     @GET("/client")
     suspend fun getOrder(): Patient
+
+    @Headers("Content-Type: application/json")
+    @POST("/queue")
+    suspend fun checkState(@Body patient: Patient): PatientState
 
     @Headers("Content-Type: application/json")
     @POST("/client")

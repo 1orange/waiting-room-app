@@ -1,4 +1,4 @@
-package com.example.waitingroom.ui.screen.medicalCondition
+package com.example.waitingroom.ui.screen.preferences
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
@@ -7,7 +7,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.waitingroom.domain.model.Patient
 import com.example.waitingroom.domain.model.StateEnum
 import com.example.waitingroom.domain.repository.WaitingRoomRepositoryInterface
@@ -21,7 +20,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(
+class PreferenceViewModel @Inject constructor(
     private val repository : WaitingRoomRepositoryInterface,
     handle: SavedStateHandle
 ) : ViewModel() {

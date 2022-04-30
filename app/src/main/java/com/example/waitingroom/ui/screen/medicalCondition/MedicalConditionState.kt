@@ -7,5 +7,6 @@ data class MedicalConditionState(
     val isLoading: Boolean = false,
     val conditions: List<MedicalCondition> = emptyList(),
     val error: String = "",
-    val item: Patient? = null
+    val item: Patient? = null,
+    val citizen_id: String?,
 )
