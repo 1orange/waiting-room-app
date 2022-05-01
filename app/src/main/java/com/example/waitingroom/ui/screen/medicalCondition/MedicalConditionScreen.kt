@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.waitingroom.destinations.DetailScreenDestination
+import com.example.waitingroom.destinations.PreferenceScreenDestination
 import com.example.waitingroom.domain.model.MedicalCondition
 import com.example.waitingroom.domain.model.Patient
 import com.example.waitingroom.domain.model.PatientPOST

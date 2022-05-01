@@ -8,5 +8,5 @@ data class MedicalConditionState(
     val conditions: List<MedicalCondition> = emptyList(),
     val error: String = "",
     val item: Patient? = null,
-    val citizen_id: String?,
+    val citizen_id: String? = null,
 )
