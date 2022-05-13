@@ -68,21 +68,21 @@ fun MedicalCondition(
     ) {}
 
     Scaffold(
-        floatingActionButton = {
-            Column {
-                FloatingActionButton(
-                    onClick = {
-                        navigator.navigate(PreferenceScreenDestination())
-                    },
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Settings,
-                        contentDescription = "Settings"
-                    )
-                }
-                Spacer(modifier = Modifier.height(10.dp))
-            }
-        }
+//        floatingActionButton = {
+//            Column {
+//                FloatingActionButton(
+//                    onClick = {
+//                        navigator.navigate(PreferenceScreenDestination())
+//                    },
+//                ) {
+//                    Icon(
+//                        imageVector = Icons.Default.Settings,
+//                        contentDescription = "Settings"
+//                    )
+//                }
+//                Spacer(modifier = Modifier.height(10.dp))
+//            }
+//        }
     ) {
         LazyColumn() {
             if (state.conditions.isEmpty()){
@@ -95,7 +95,6 @@ fun MedicalCondition(
                             viewModel.selectItem(
                                 PatientPOST(
                                     condition_id = condition.id,
-                                    citizen_id = state.citizen_id
                                 )
                             )
                         }
